@@ -1,1 +1,1 @@
-Pablo Pedreros Díaz - p.pedreros@hotmail.com - 202112491
+Pablo Pedreros Díaz - p.pedreros@uniandes.com - 202112491
