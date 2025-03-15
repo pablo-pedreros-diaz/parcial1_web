@@ -1,18 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { IntlProvider } from 'react-intl';
+import localeEsMessages from "./locales/es";
+import localeEnMessages from "./locales/en";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import LoginPage from "./components/LoginPage";
+
+const getBrowserLanguage = () => {
+    const language = navigator.language || navigator.userLanguage;
+    return language.split('-')[0];
+};
+const language = getBrowserLanguage();
+
+const getLocaleData = (lang) => {
+    switch (lang) {
+      case 'es':
+        return { locale: 'es-ES', messages: localeEsMessages };
+      default:
+        return { locale: 'en-US', messages: localeEnMessages };
+    }
+};
+
+const { locale, messages } = getLocaleData(language);
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <IntlProvider locale={locale} messages={messages}>
+        <LoginPage/>
+    </IntlProvider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

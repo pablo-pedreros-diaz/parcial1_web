@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FormattedMessage, useIntl} from 'react-intl';
 
-const RobotDetail = ({ robotId, onBack }) => {
+const RobotDetail = ({ robotId }) => {
   const [robot, setRobot] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchRobotDetail = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`http://localhost:3001/robots/${robotId}`);
         if (response.ok) {
@@ -32,34 +34,13 @@ const RobotDetail = ({ robotId, onBack }) => {
   if (!robot) return <div className="alert alert-warning">No se encontró información del robot</div>;
 
   return (
-    <div className="card-body">
-
-      <div className="row mt-4">
-        <div className="col-md-6">
-          <table className="table table-striped">
-            <thead className="table-dark">
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Modelo</th>
-                <th>Empresa Fabricante</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{robot.id}</td>
-                <td>{robot.nombre}</td>
-                <td>{robot.modelo}</td>
-                <td>{robot.empresaFabricante}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="col-md-6">
-          <div className="card">
+    <div className="card-body p-2">
+      <div className="row">
+        <div className="col-md-12">
+          <div className="card" style={{ backgroundColor: '#D9D9D980' }}>
             <div className="card-body">
-              <div className="text-center mb-3">
-                <h3>{robot.nombre}</h3>
+              <div className="text-center mb-2">
+                <h3 className='mb-1'>{robot.nombre}</h3>
                 <img 
                   src={robot.imagen} 
                   alt={robot.nombre} 
@@ -67,10 +48,10 @@ const RobotDetail = ({ robotId, onBack }) => {
                   style={{ maxHeight: '200px', borderRadius: '8px' }}
                 />
               </div>
-              <div className="mt-3">
-                <p><strong>➝ Año de Fabricación:</strong> {robot.añoFabricacion}</p>
-                <p><strong>➝ Capacidad de Procesamiento:</strong> {robot.capacidadProcesamiento}</p>
-                <p><strong>➝ Humor:</strong> {robot.humor}</p>
+              <div className='mt-2'>
+                <p className='mb-1'><strong>➝ <FormattedMessage id='Year of Manufacture'/>:</strong> {robot.añoFabricacion}</p>
+                <p className='mb-1'><strong>➝ <FormattedMessage id='Processing Capacity'/>:</strong> {robot.capacidadProcesamiento}</p>
+                <p className='mb-0'><strong>➝ <FormattedMessage id='Humor'/>:</strong> {robot.humor}</p>
               </div>
             </div>
           </div>
