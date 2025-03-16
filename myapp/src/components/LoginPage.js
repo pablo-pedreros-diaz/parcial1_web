@@ -74,13 +74,13 @@ const RobotApp = () => {
       <hr className="my-3" />
       
       <div className="my-4">
-        <div className="bg-danger p-3 rounded" style={{ backgroundColor: 'white' }}>
+        <div className="p-3 rounded" style={{ backgroundColor: 'white' }}>
           <div className="text-center">
             <img 
-              src="./robots.png" 
+              src="/robots.png" 
               alt="Robot characters lineup" 
               className="img-fluid"
-              style={{ maxHeight: '180px' }}
+              style={{ maxHeight: '220px' }}
             />
           </div>
         </div>
@@ -181,7 +181,7 @@ const RobotApp = () => {
           </div>
         </div>
         
-        <div className="col-md-4">
+        <div className="col-md-6">
           {selectedRobotId && view === 'detail' && 
             <RobotDetail robotId={selectedRobotId} />
           }
@@ -214,13 +214,13 @@ const RobotApp = () => {
                 </h1>
                 <hr className="my-0" />
                 <div className="my-0">
-                  <div className="bg-danger p-3" style={{ backgroundColor: '#f77f9e' }}>
+                  <div className="p-3" style={{ backgroundColor: 'white' }}>
                     <div className="text-center">
                       <img 
-                        src="./robots.png" 
+                        src="/robots.png" 
                         alt="Robot characters lineup" 
                         className="img-fluid"
-                        style={{ maxHeight: '180px' }}
+                        style={{ maxHeight: '220px' }}
                       />
                     </div>
                   </div>

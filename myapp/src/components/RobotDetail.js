@@ -7,6 +7,10 @@ const RobotDetail = ({ robotId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const rawUrl = (url) => {
+    return url?.replace('github.com', 'raw.githubusercontent.com').replace('/blob', '');
+  }
+
   useEffect(() => {
     const fetchRobotDetail = async () => {
       setLoading(true);
@@ -42,7 +46,7 @@ const RobotDetail = ({ robotId }) => {
               <div className="text-center mb-2">
                 <h3 className='mb-1'>{robot.nombre}</h3>
                 <img 
-                  src={robot.imagen} 
+                  src={rawUrl(robot.imagen)} 
                   alt={robot.nombre} 
                   className="img-fluid" 
                   style={{ maxHeight: '200px', borderRadius: '8px' }}
